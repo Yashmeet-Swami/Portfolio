@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-body: "Poppins", sans-serif;
+    --font-title: "Montserrat", sans-serif;
+    --color-body: #212428;
+    --color-lighttext: #c4cfde;
+    --color-boxbg: linear-gradient(145deg, #1e2024, #23272b);
+    --color-designColor: #ff014f;
+    --shadowOne: 10px 10px 19px #1c1e22, -10px -10px 19px #262a2e;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 0.7s infinite;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+  background: var(--color-body);
+}
+  
+@theme {
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 375px;
+  --breakpoint-sml: 500px;
+  --breakpoint-md: 667px;
+  --breakpoint-mdl: 768px;
+  --breakpoint-lg: 960px;
+  --breakpoint-lgl: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+  /* Ensures smooth mobile transitions
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+      /* Slightly reduce font size on mobile */
+  
+
+@layer components {
+  .banner-icon {
+    @apply w-16 h-16 bg-black/70 text-white text-xl inline-flex items-center justify-center rounded-md cursor-pointer transition-all duration-300;
+    box-shadow: var(--shadowOne);
+  }
+
+  .banner-icon:hover {
+    @apply bg-black/60 -translate-y-1;
+    color: var(--color-designColor);
+  }
+
+  .contact-input {
+    @apply w-full h-12 rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-[var(--color-lighttext)] px-4 outline-none focus-visible:ring-1 focus-visible:ring-[#ff014f] duration-300;
+  }
+
+  .contactTextArea {
+    @apply w-full rounded-lg border-b border-b-gray-600 bg-[#191b1e] text-[var(--color-lighttext)] px-4 py-2 outline-none focus-visible:ring-1 focus-visible:ring-[#ff014f]  focus-visible:border-b-transparent duration-300 resize-none;
+  }
+
+  .resumeLi {
+    @apply w-full h-20 bg-black/25 text-xl text-gray-300 flex justify-center cursor-pointer hover:bg-black/40 duration-300 items-center border rounded-none;
+  }
+}
