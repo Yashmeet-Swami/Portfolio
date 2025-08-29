@@ -11,7 +11,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="w-full h-28 sticky top-0 left-0 right-0 z-50 bg-[var(--color-body)] border-b border-gray-600/30">
+    <div className="w-full h-20 sticky top-0 left-0 right-0 z-50 bg-[var(--color-body)] border-b border-gray-600/30">
       {/* Main Navigation Container */}
       <div className="h-full max-w-7xl mx-auto px-6 flex items-center justify-between">
         

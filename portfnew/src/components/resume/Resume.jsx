@@ -15,7 +15,7 @@ const Resume = () => {
     return (
         <section id="resume" className='w-full py-20 border-b-[1px] border-b-black'>
             <div className='flex justify-center items-center text-center mb-12'>
-                <Title title="Resume" des="My Resume" />
+                <Title des="My Resume" />
             </div>
 
             {/* Navigation Tabs */}

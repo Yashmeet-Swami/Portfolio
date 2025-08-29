@@ -18,37 +18,54 @@ const Contact = () => {
             .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
     };
 
-    const handleSend = (e) => {
+    const handleSend = async (e) => {
         e.preventDefault();
+
         if (username === "") {
             setErrMsg("Username is required!");
-        } else if (phoneNumber === "") {
-            setErrMsg("Phone number is required!");
         } else if (email === "") {
             setErrMsg("Please give your Email!");
         } else if (!emailValidation(email)) {
             setErrMsg("Give a valid Email!");
-        } else if (subject === "") {
-            setErrMsg("Please give your Subject!");
         } else if (message === "") {
             setErrMsg("Message is required!");
         } else {
-            setSuccessMsg(
-                `Thank you dear ${username}, Your Messages has been sent Successfully!`
-            );
-            setErrMsg("");
-            setUsername("");
-            setPhoneNumber("");
-            setEmail("");
-            setSubject("");
-            setMessage("");
+            try {
+                const response = await fetch("http://localhost:5000/api/contact", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ username, email, message })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    setSuccessMsg(`Thank you ${username}, your message has been sent!`);
+                    setErrMsg("");
+                    setUsername("");
+                    setEmail("");
+                    setMessage("");
+
+                    
+                    setTimeout(() => {
+                        setSuccessMsg("");
+                    }, 10000); 
+                } else {
+                    setErrMsg(data.error || "Something went wrong.");
+                }
+            } catch (error) {
+                setErrMsg("Server error. Please try again later.");
+            }
         }
     };
+
 
     return (
         <section id="contact" className="w-full py-20 border-b-[1px] border-b-black">
             <div className="flex justify-center items-center text-center">
-                <Title title="CONTACT" des="Contact with me" />
+                <Title des="Contact with me" />
             </div>
             <div className="w-full mt-16">
                 {/* ✅ Make this container responsive */}
@@ -68,26 +85,17 @@ const Contact = () => {
                                 </p>
                             )}
 
-                            <div className="w-full flex flex-col lg:flex-row gap-10">
-                                <div className="w-full lg:w-1/2 flex flex-col gap-4">
-                                    <p className="text-sm text-gray-400 uppercase tracking-wide">Your Name</p>
-                                    <input
-                                        onChange={(e) => setUsername(e.target.value)}
-                                        value={username}
-                                        type="text"
-                                        className={`${errMsg === "Username is required!" ? "ring-2 ring-[#ff014f]" : ""} contact-input`}
-                                    />
-                                </div>
-                                <div className="w-full lg:w-1/2 flex flex-col gap-4">
-                                    <p className="text-sm text-gray-400 uppercase tracking-wide">Phone Number</p>
-                                    <input
-                                        onChange={(e) => setPhoneNumber(e.target.value)}
-                                        value={phoneNumber}
-                                        type="text"
-                                        className={`${errMsg === "Phone number is required!" ? "ring-2 ring-[#ff014f]" : ""} contact-input`}
-                                    />
-                                </div>
+                            <div className="w-full flex flex-col gap-4">
+                                <p className="text-sm text-gray-400 uppercase tracking-wide">Your Name</p>
+                                <input
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    value={username}
+                                    type="text"
+                                    className={`${errMsg === "Username is required!" ? "ring-2 ring-[#ff014f]" : ""} contact-input`}
+                                />
                             </div>
+
+
 
                             <div className="flex flex-col gap-4">
                                 <p className="text-sm text-gray-400 uppercase tracking-wide">Email Address</p>
@@ -96,16 +104,6 @@ const Contact = () => {
                                     value={email}
                                     type="email"
                                     className={`${errMsg === "Please give your Email!" || errMsg === "Give a valid Email!" ? "ring-2 ring-[#ff014f]" : ""} contact-input`}
-                                />
-                            </div>
-
-                            <div className="flex flex-col gap-4">
-                                <p className="text-sm text-gray-400 uppercase tracking-wide">Subject</p>
-                                <input
-                                    onChange={(e) => setSubject(e.target.value)}
-                                    value={subject}
-                                    type="text"
-                                    className={`${errMsg === "Please give your Subject!" ? "ring-2 ring-[#ff014f]" : ""} contact-input`}
                                 />
                             </div>
 
