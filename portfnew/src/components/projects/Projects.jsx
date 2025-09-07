@@ -18,8 +18,8 @@ const Projects = () => {
                     title="TASKSYNC – Team Collaboration & Workflow Tool"
                     des="TaskSync is a full-stack team collaboration and workflow tool built with the MERN stack. It enables task planning, tracking, and management via shared workspaces, real-time updates, and smart analytics. I implemented JWT authentication, email invites using Nodemailer, and RESTful APIs for task, project, and workspace management."
                     src={proj1}
-                    githubLink="https://github.com/yourusername/tasksync"
-                    liveLink="https://tasksync-demo.com"
+                    githubLink="https://github.com/Yashmeet-Swami/Project-Manager"
+                    liveLink="https://project-manager-three-nu.vercel.app/"
                     isEven={true}
                 />
 
@@ -27,8 +27,8 @@ const Projects = () => {
                     title="Portfolio Website"
                     des="A responsive and visually appealing personal portfolio built using React, Tailwind CSS, and Vite. It showcases my projects, skills, and contact information with smooth animations and clean UI design. Fully optimized for both desktop and mobile devices."
                     src={projectTwo}
-                    githubLink="https://github.com/yourusername/portfolio"
-                    liveLink=""
+                    githubLink="https://github.com/Yashmeet-Swami/portfolio"
+                    liveLink="https://portfolio-spa3.vercel.app/"
                     isEven={true}
                 />
             </div>
